@@ -1,10 +1,11 @@
 #!/bin/bash
 
 update(){
+	desc=$@
 	echo "Git Add">&2
 	git add -A >&2
 	echo "Git commit $@">&2
-	git commit -m '"$@"' >&2
+	git commit -m "$desc" >&2
 	echo "Git Push">&2
 	git push origin master >&2
 	echo "All done. :)">&2
