@@ -6,17 +6,15 @@
 
 ## Pós-configuração
 
-* Adicionar a configuração do Docker seu DNS:
-`sudo vim /etc/docker/daemon.json`
-
-* Adicionar o seguinte conteúdo:
+* Adicione seu DNS ao `sudo vim /etc/docker/daemon.json`:
     ```
     {                                                                          
         "dns": ["8.8.8.8", "8.8.4.4"]
     }        
     ```
-* Se o DNS do Google for bloqueado na rede, adicionar o DNS do seu provedor.
+* Se você está usando o DNS do Google, certifique-se que não é bloqueado na rede, nesse caso, adicionar o DNS do seu provedor.
 * Reinicie o serviço com ```sudo service docker restart```
+* Confirme se seu usuários está no grupo `docker`, caso não esteja, adicionar.
 
 ## Comandos úteis
 
