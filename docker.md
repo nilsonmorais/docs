@@ -6,7 +6,7 @@
 
 ## Pós-configuração
 
-* Adicione seu DNS ao `sudo vim /etc/docker/daemon.json`:
+* Adicione seu DNS ao */etc/docker/daemon.json*:
     ```
     {                                                                          
         "dns": ["8.8.8.8", "8.8.4.4"]
