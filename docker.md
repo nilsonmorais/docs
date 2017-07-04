@@ -1,24 +1,22 @@
 # Docker 
 
-### Instalação
+## Instalação
 
-* Ubuntu (17.04): ```apt-get install docker.io```
+* Ubuntu (17.04): `apt-get install docker.io`
 
-### Pós-configuração
+## Pós-configuração
 
-* Adicionar a configuração do Docker seu DNS:
-```sudo vim /etc/docker/daemon.json```
-
-* Adicionar o seguinte conteúdo:
+* Adicione seu DNS ao `/etc/docker/daemon.json`:
     ```
     {                                                                          
         "dns": ["8.8.8.8", "8.8.4.4"]
     }        
     ```
-* Se o DNS do Google for bloqueado na rede, adicionar o DNS do seu provedor.
+* Se você está usando o DNS do Google, certifique-se que não é bloqueado na rede, nesse caso, adicionar o DNS do seu provedor.
 * Reinicie o serviço com ```sudo service docker restart```
+* Confirme se seu usuários está no grupo `docker`, caso não esteja, adicionar.
 
-### Comandos úteis
+## Comandos úteis
 
 * Baixar uma imagem: 
 ```docker pull ubuntu:latest```
@@ -38,7 +36,7 @@
 * Importar uma imagem:
 ```docker load -i <IMG_FILE>```
 
-### Dockerfile Example
+## Dockerfile Example
 
 ```
 #Use Ubuntu as base
@@ -84,6 +82,11 @@ ENV NAME World
 # Run some script
 # CMD ["python", "app.py"]
 ```
+
+## Docker for Windows
+
+* Adicionar no firewall as regras para dockerli: https://github.com/docker/kitematic/wiki/Common-Issues-and-Fixes
+
 
 Esse Markdown foi feito com [dillinger].
 
