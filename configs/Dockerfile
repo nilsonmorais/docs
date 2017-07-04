@@ -27,10 +27,8 @@ composer \
 
 RUN composer global require "laravel/installer"
 
-# RUN pip install -r requirements.txt
-
 EXPOSE 80
 
-ENV NAME World
+# ENV NAME World
 
 # CMD ["python", "app.py"]
