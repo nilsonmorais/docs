@@ -1,0 +1,20 @@
+version: "2"
+services:
+  teste-db:
+    image: mariadb
+    volumes:
+      - ./db:/var/lib/mysql
+    ports:
+      - "9080:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: 1234
+  teste-wp:
+    image: wordpress
+    volumes:
+      - ./wp:/var/www/html
+    ports:
+      - "8080:80"
+    links:
+      - teste-db:mysql
+    environment:
+      WORDPRESS_DB_PASSWORD: 1234
