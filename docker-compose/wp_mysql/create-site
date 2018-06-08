@@ -1,0 +1,59 @@
+#!/bin/bash
+
+VERSION="create-site v0.1"
+
+print_version(){
+  echo "$VERSION";
+}
+
+usage(){
+  print_version;
+  echo "Usage: create-site -s|--site mysite";
+}
+
+docker_info(){
+  echo "Now just type: cd $SITE && docker-compose up -d ";
+}
+
+create_site(){
+  print_version;
+  echo "Site Created: $SITE ";
+  mkdir $SITE;
+echo "version: \"2\"
+services:
+  $SITE-db:
+    image: mariadb
+    volumes:
+      - ./db:/var/lib/mysql
+    ports:
+      - \"9080:3306\"
+    environment:
+      MYSQL_ROOT_PASSWORD: dbpass
+  $SITE-wp:
+    image: wordpress
+    volumes:
+      - ./wp:/var/www/html
+    ports:
+      - \"8080:80\"
+    links:
+      - $SITE-db:mysql
+    environment:
+      WORDPRESS_DB_PASSWORD: dbpass
+" > $SITE/docker-compose.yml
+  docker_info
+}
+
+while [ "$1" != "" ]; do
+  case $1 in
+    -s | --site ) shift
+                  SITE=$1
+                  create_site
+                  ;;
+    -h | --help ) usage
+                  exit
+                  ;;
+    * )           usage
+                  exit 1
+  esac
+  shift
+done
